@@ -1,12 +1,16 @@
 package school.hei.marcheurblanc;
 
 import org.junit.jupiter.api.Test;
+import school.hei.marcheurblanc.carte.Carte;
+import school.hei.marcheurblanc.carte.Lieu;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MarcheurTest{
     @Test
-    void justATest(){
+    void peutAllerVersLaDestination(){
         Carte carte = new Carte();
 
         Lieu Marais = new Lieu("Marais");
@@ -38,11 +42,9 @@ public class MarcheurTest{
         carte.ajouterRue("Boulevard vers ESTI", Boulevard, ESTI);
 
         List<String > chemin = carte.trouverCheminAleatoire(Hei, ESTI);
+        String destination = ESTI.getNom();
+        String dernierElementDuChemin = chemin.get(chemin.size() - 1);
 
-        if (chemin != null) {
-            System.out.println("Son itinéraire : " + chemin);
-        } else {
-            System.out.println("Aucun chemin trouvé.");
-        }
+        assertEquals(destination, dernierElementDuChemin);
     }
 }
